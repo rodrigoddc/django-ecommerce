@@ -12,6 +12,23 @@
 <body>
 {% include 'shop/navbar.html' %}
 
+<div class="container">
+    <div class="row" style="margin-top: 6%">
+         <span class="col text-right">
+            {% with totail_items=cart|length %}
+                {% if cart|length > 0 %}
+                    Minha ordem de compra:
+                    <a class="btn btn-info" href="{% url 'cart:cart_detail' %}" style="color: #ffffff">
+                        {{ totail_items }} item{{ totail_items|pluralize }}, R$ {{ cart.get_total_price }}
+                    </a>
+                    {% else %}
+                   Seu carrinho está vazio
+                {% endif %}
+            {% endwith %}
+         </span>
+    </div>
+</div>
+
 {% block content %}
 
 {% endblock %}
